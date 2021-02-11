@@ -11,9 +11,9 @@ from dnslib.server import BaseResolver
 class DNSLoggerHelper:
     @staticmethod
     def parse_suffix(suffix):
-        if not suffix.startswith("."):
+        if suffix and not suffix.startswith("."):
             suffix = f".{suffix}"
-        if not suffix.endswith("."):
+        if suffix and not suffix.endswith("."):
             suffix += "."
         return suffix
 
