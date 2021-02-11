@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import threading
 import socketserver
 import argparse
 from copy import deepcopy
@@ -43,9 +42,7 @@ class DNSLogger:
 
         qname = str(question.get_qname())
         suffixed = DNSLoggerHelper.remove_suffix(qname, self.suffix)
-        subdomains = suffixed.split(".")
-        for i, subdomain in enumerate(subdomains):
-            subdomains[i] = DNSLoggerHelper.decode_hex(subdomain)
+        subdomains = map(DNSLoggerHelper.decode_hex, suffixed.split("."))
         question.set_qname(".".join(subdomains) + self.suffix)
         return question
 
