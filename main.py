@@ -32,9 +32,9 @@ class DNSLoggerHelper:
 
 
 class DNSLogger:
-    def __init__(self, suffix="", hex_encoded=False):
-        self.suffix = DNSLoggerHelper.parse_suffix(suffix)
+    def __init__(self, hex_encoded=False, suffix=""):
         self.hex_encoded = hex_encoded
+        self.suffix = DNSLoggerHelper.parse_suffix(suffix)
 
     def parse_question(self, question):
         if not self.hex_encoded:
@@ -106,7 +106,7 @@ def main():
     # Create server
     server = ThreadedUDPServer((args.host, args.port), DNSHandler)
     server.resolver = BaseResolver()
-    server.logger = DNSLogger(args.suffix, args.hex_encoded)
+    server.logger = DNSLogger(args.hex_encoded, args.suffix)
     server.serve_forever()
 
 
