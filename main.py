@@ -18,7 +18,7 @@ class DNSLoggerHelper:
 
     @staticmethod
     def decode_hex(data):
-        try: 
+        try:
             data = bytes.fromhex(data).decode("utf-8")
         except ValueError:
             pass
@@ -67,7 +67,8 @@ class ThreadedUDPServer(socketserver.ThreadingMixIn, socketserver.UDPServer):
 
 def main():
     # Parse args
-    argparser = argparse.ArgumentParser()
+    argparser = argparse.ArgumentParser(
+        description="Open a DNS server that knows no records, but does record every request.")
     argparser.add_argument(
         "-a",
         "--address",
