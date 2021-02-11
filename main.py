@@ -65,7 +65,7 @@ def main():
                            metavar="PORT", type=int, default=53)
     argparser.add_argument("-he", "--hex-encoded", dest="hex_encoded",
                            action="store_true", help="If DNS requests will be hex encoded")
-    argparser.add_argument("-sr", "--suffix", dest="suffix", action="store", type=str,
+    argparser.add_argument("-s", "--suffix", dest="suffix", action="store", type=str,
                            help="Default FQDN suffix of DNS questions (use this when DNS requests are hex encoded)", default="")
     args = argparser.parse_args()
     # Create server
