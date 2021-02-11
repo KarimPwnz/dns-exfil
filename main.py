@@ -17,6 +17,20 @@ class DNSLoggerHelper:
             suffix += "."
         return suffix
 
+    @staticmethod
+    def decode_hex(data):
+        try: 
+            data = bytes.fromhex(data).decode("utf-8")
+        except ValueError:
+            pass
+        return data
+
+    @staticmethod
+    def remove_suffix(data, suffix):
+        if suffix and data.endswith(suffix):
+            data = data[: -len(suffix)]
+        return data
+
 
 class DNSLogger:
     def __init__(self, suffix="", hex_encoded=False):
@@ -28,12 +42,10 @@ class DNSLogger:
             return question
 
         qname = str(question.get_qname())
-        suffixed = qname
-        if suffixed.endswith(self.suffix):
-            suffixed = suffixed[: len(self.suffix)]
+        suffixed = DNSLoggerHelper.remove_suffix(qname, self.suffix)
         subdomains = suffixed.split(".")
         for i, subdomain in enumerate(subdomains):
-            subdomains[i] = bytes.fromhex(subdomain).decode("utf-8")
+            subdomains[i] = DNSLoggerHelper.decode_hex(subdomain)
         question.set_qname(".".join(subdomains) + self.suffix)
         return question
 
