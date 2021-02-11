@@ -8,7 +8,7 @@ from dnslib import DNSRecord
 from dnslib.server import BaseResolver
 
 
-class DNSLoggerHelper():
+class DNSLoggerHelper:
     @staticmethod
     def parse_suffix(suffix):
         if not suffix.startswith("."):
@@ -18,7 +18,7 @@ class DNSLoggerHelper():
         return suffix
 
 
-class DNSLogger():
+class DNSLogger:
     def __init__(self, suffix="", hex_encoded=False):
         self.suffix = DNSLoggerHelper.parse_suffix(suffix)
         self.hex_encoded = hex_encoded
@@ -30,7 +30,7 @@ class DNSLogger():
         qname = str(question.get_qname())
         suffixed = qname
         if suffixed.endswith(self.suffix):
-            suffixed = suffixed[:len(self.suffix)]
+            suffixed = suffixed[: len(self.suffix)]
         subdomains = suffixed.split(".")
         for i, subdomain in enumerate(subdomains):
             subdomains[i] = bytes.fromhex(subdomain).decode("utf-8")
@@ -59,14 +59,40 @@ class ThreadedUDPServer(socketserver.ThreadingMixIn, socketserver.UDPServer):
 def main():
     # Parse args
     argparser = argparse.ArgumentParser()
-    argparser.add_argument("-a", "--address", dest="host", action="store",
-                           metavar="HOST", type=str, default="127.0.0.1")
-    argparser.add_argument("-p", "--port", dest="port", action="store",
-                           metavar="PORT", type=int, default=53)
-    argparser.add_argument("-he", "--hex-encoded", dest="hex_encoded",
-                           action="store_true", help="If DNS requests will be hex encoded")
-    argparser.add_argument("-s", "--suffix", dest="suffix", action="store", type=str,
-                           help="Default FQDN suffix of DNS questions (use this when DNS requests are hex encoded)", default="")
+    argparser.add_argument(
+        "-a",
+        "--address",
+        dest="host",
+        action="store",
+        metavar="HOST",
+        type=str,
+        default="127.0.0.1",
+    )
+    argparser.add_argument(
+        "-p",
+        "--port",
+        dest="port",
+        action="store",
+        metavar="PORT",
+        type=int,
+        default=53,
+    )
+    argparser.add_argument(
+        "-he",
+        "--hex-encoded",
+        dest="hex_encoded",
+        action="store_true",
+        help="If DNS requests will be hex encoded",
+    )
+    argparser.add_argument(
+        "-s",
+        "--suffix",
+        dest="suffix",
+        action="store",
+        type=str,
+        help="Default FQDN suffix of DNS questions (use this when DNS requests are hex encoded)",
+        default="",
+    )
     args = argparser.parse_args()
     # Create server
     server = ThreadedUDPServer((args.host, args.port), DNSHandler)
