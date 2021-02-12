@@ -90,7 +90,7 @@ def main():
         "--hex-encoded",
         dest="hex_encoded",
         action="store_true",
-        help="If DNS requests will be hex encoded",
+        help="Enable hex decoding",
     )
     argparser.add_argument(
         "-s",
@@ -98,7 +98,7 @@ def main():
         dest="suffix",
         action="store",
         type=str,
-        help="Default FQDN suffix of DNS questions (use this when DNS requests are hex encoded)",
+        help="Default FQDN suffix of DNS questions (should use when DNS requests are hex encoded)",
         default="",
     )
     args = argparser.parse_args()
