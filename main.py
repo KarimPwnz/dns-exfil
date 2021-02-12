@@ -106,7 +106,10 @@ def main():
     server = ThreadedUDPServer((args.host, args.port), DNSHandler)
     server.resolver = BaseResolver()
     server.logger = DNSLogger(args.hex_encoded, args.suffix)
-    server.serve_forever()
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        pass
 
 
 if __name__ == "__main__":
