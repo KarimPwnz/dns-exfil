@@ -10,11 +10,9 @@ from dnslib.server import BaseResolver
 class DNSLoggerHelper:
     @staticmethod
     def parse_suffix(suffix):
-        if suffix and not suffix.startswith("."):
-            suffix = f".{suffix}"
-        if suffix and not suffix.endswith("."):
-            suffix += "."
-        return suffix
+        if not suffix:
+            return suffix
+        return "." + suffix.lstrip(".").rstrip(".") + "."
 
     @staticmethod
     def decode_hex(data):
