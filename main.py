@@ -12,7 +12,7 @@ class DNSLoggerHelper:
     def parse_suffix(suffix):
         if not suffix:
             return suffix
-        return "." + suffix.lstrip(".").rstrip(".") + "."
+        return "." + suffix.strip(".") + "."
 
     @staticmethod
     def decode_hex(data):
