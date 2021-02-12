@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-
-import socketserver
 import argparse
+import socketserver
 from copy import deepcopy
+
 from dnslib import DNSRecord
 from dnslib.server import BaseResolver
 
@@ -66,7 +66,8 @@ class ThreadedUDPServer(socketserver.ThreadingMixIn, socketserver.UDPServer):
 def main():
     # Parse args
     argparser = argparse.ArgumentParser(
-        description="Open a DNS server that knows no records, but does record every request.")
+        description="Open a DNS server that knows no records, but does record every request."
+    )
     argparser.add_argument(
         "-a",
         "--address",
