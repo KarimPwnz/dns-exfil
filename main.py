@@ -40,8 +40,8 @@ class DNSLogger:
 
         qname = str(question.get_qname())
         suffixed = DNSLoggerHelper.remove_suffix(qname, self.suffix)
-        subdomains = map(DNSLoggerHelper.decode_hex, suffixed.split("."))
-        question.set_qname(".".join(subdomains) + self.suffix)
+        decoded_subdomains = map(DNSLoggerHelper.decode_hex, suffixed.split("."))
+        question.set_qname(".".join(decoded_subdomains) + self.suffix)
         return question
 
     def log(self, sender, parsed_req):
