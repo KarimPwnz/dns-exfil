@@ -45,8 +45,9 @@ class DNSLogger:
         return question
 
     def log(self, sender, parsed_req):
+        original_q = str(parsed_req.get_q().get_qname())
         question = self.parse_question(parsed_req.get_q())
-        print(f"{sender}: {question}")
+        print(f"{sender}: {question} ({original_q})")
 
 
 class DNSHandler(socketserver.BaseRequestHandler):
