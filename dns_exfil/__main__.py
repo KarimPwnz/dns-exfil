@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import argparse
+import json
 import socketserver
 import sys
+from typing import Tuple
 
 from dnslib import DNSRecord
 from dnslib.server import BaseResolver
@@ -58,6 +60,18 @@ class DNSLoggerHelper:
             data = data[: -len(suffix)]
         return data
 
+    @staticmethod
+    def parse_sender(sender: Tuple[str, int]) -> str:
+        """Turn a sender tuple into a ip:port string
+
+        Args:
+            sender (Tuple[str, int]): sender ip and port tuple
+
+        Returns:
+            str: the sender ip and port join
+        """
+        return f"{sender[0]}:{sender[1]}"
+
 
 class DNSLogger:
     """Logger for DNS queries"""
@@ -86,22 +100,28 @@ class DNSLogger:
         decoded_subdomains = map(
             DNSLoggerHelper.gracefully_decode_hex, unsuffixed_question.split(".")
         )
-        # Update question DNSRecord object with new question value
+        # Re-join subdomains and suffix (if question started with it originally)
         result = ".".join(decoded_subdomains)
         if question.endswith(self.suffix):
             result += self.suffix
         return result
 
-    def log(self, sender: str, record: DNSRecord) -> None:
+    def log(self, sender: Tuple[str, int], record: DNSRecord) -> None:
         """Log a DNS request
 
         Args:
             sender (str): the sender's IP address
             request_data (DNSRecord): the raw, un-parsed request data (from socketserver)
         """
-        question_str = str(record.get_q().get_qname())
-        parsed_question_str = self.parse_question(question_str)
-        print(f"{sender}: {record.get_q()} ({parsed_question_str})")
+        question = record.get_q()
+        qname_str = str(question.get_qname())
+        parsed_qname_str = self.parse_question(qname_str)
+        result = {
+            "sender": DNSLoggerHelper.parse_sender(sender),
+            "raw_question": str(question),
+            "parsed_qname": parsed_qname_str,
+        }
+        print(json.dumps(result, indent=4))
 
 
 class DNSHandler(socketserver.BaseRequestHandler):
