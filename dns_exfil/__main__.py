@@ -87,7 +87,10 @@ class DNSLogger:
             DNSLoggerHelper.gracefully_decode_hex, unsuffixed_question.split(".")
         )
         # Update question DNSRecord object with new question value
-        return ".".join(decoded_subdomains) + self.suffix
+        result = ".".join(decoded_subdomains)
+        if question.endswith(self.suffix):
+            result += self.suffix
+        return result
 
     def log(self, sender: str, record: DNSRecord) -> None:
         """Log a DNS request
