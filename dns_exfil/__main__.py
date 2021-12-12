@@ -154,7 +154,7 @@ def main():
         dest="suffix",
         action="store",
         type=str,
-        help="Default FQDN suffix of DNS questions (recommended when DNS requests are hex encoded); example: .evil.com.",
+        help="Default FQDN suffix of DNS questions (recommended when DNS requests are hex encoded); example: '.evil.com.'",
         default="",
     )
     args = argparser.parse_args()
