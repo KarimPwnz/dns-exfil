@@ -33,7 +33,7 @@ $ python3 setup.py install
 
    ![DNS NS setup on Cloudflare](misc/dns-NS-setup.png)
 
-3. Send your target to `<whatever_you_want>.domain`
+3. Send your target to `<whatever_you_want>.dns_exfil_domain`
 
 ## DNS exfiltration set-up
 
