@@ -12,20 +12,16 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/karimpwnz/dns-exfil",
-    project_urls={
-        "Bug Tracker": "https://github.com/karimpwnz/dns-exfil/issues",
-    },
+    project_urls={"Bug Tracker": "https://github.com/karimpwnz/dns-exfil/issues",},
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Topic :: Security",
-        "Topic :: Internet :: Name Service (DNS)"
+        "Topic :: Internet :: Name Service (DNS)",
     ],
     packages=["dns_exfil"],
     entry_points={"console_scripts": ["dns-exfil = dns_exfil.__main__:main"]},
     python_requires=">=3.6",
-    install_requires=[
-        "dnslib >= 0.9.1"
-    ],
+    install_requires=["dnslib >= 0.9.1"],
 )

@@ -81,11 +81,11 @@ class DNSLogger:
         if not self.hex_encoded:
             return question
         # Remove FQDN suffix
-        unsuffixed_question = DNSLoggerHelper.remove_suffix(
-            question, self.suffix)
+        unsuffixed_question = DNSLoggerHelper.remove_suffix(question, self.suffix)
         # Parse hex of each subdomain
         decoded_subdomains = map(
-            DNSLoggerHelper.gracefully_decode_hex, unsuffixed_question.split("."))
+            DNSLoggerHelper.gracefully_decode_hex, unsuffixed_question.split(".")
+        )
         # Update question DNSRecord object with new question value
         return ".".join(decoded_subdomains) + self.suffix
 
@@ -107,8 +107,8 @@ class DNSHandler(socketserver.BaseRequestHandler):
     def handle(self) -> None:
         data, connection = self.request
         parsed_record = DNSRecord.parse(data)
-        self.server.logger.log(self.client_address, parsed_record) # type: ignore
-        response = self.server.resolver.resolve(parsed_record, self) # type: ignore
+        self.server.logger.log(self.client_address, parsed_record)  # type: ignore
+        response = self.server.resolver.resolve(parsed_record, self)  # type: ignore
         connection.sendto(response.pack(), self.client_address)
 
 
@@ -163,7 +163,8 @@ def main():
         server = ThreadedUDPServer((args.host, args.port), DNSHandler)
     except PermissionError:
         sys.exit(
-            "Error: couldn't create DNS server due to a permission issue. Try running with sudo.")
+            "Error: couldn't create DNS server due to a permission issue. Try running with sudo."
+        )
     server.resolver = BaseResolver()
     server.logger = DNSLogger(args.hex_encoded, args.suffix)
     try:
