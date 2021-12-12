@@ -62,7 +62,7 @@ class DNSLoggerHelper:
 class DNSLogger:
     """Logger for DNS queries"""
 
-    def __init__(self, hex_encoded: str = False, suffix: str = "") -> None:
+    def __init__(self, hex_encoded: bool = False, suffix: str = "") -> None:
         self.hex_encoded = hex_encoded
         self.suffix = DNSLoggerHelper.parse_suffix(suffix)
 
@@ -107,8 +107,8 @@ class DNSHandler(socketserver.BaseRequestHandler):
     def handle(self) -> None:
         data, connection = self.request
         parsed_record = DNSRecord.parse(data)
-        self.server.logger.log(self.client_address, parsed_record)
-        response = self.server.resolver.resolve(parsed_record, self)
+        self.server.logger.log(self.client_address, parsed_record) # type: ignore
+        response = self.server.resolver.resolve(parsed_record, self) # type: ignore
         connection.sendto(response.pack(), self.client_address)
 
 
