@@ -6,6 +6,7 @@ with open("README.md", "r") as f:
 setuptools.setup(
     name="dns-exfil",
     version="0.0.1",
+    license="MIT",
     author="karimpwnz",
     author_email="karim@karimrahal.com",
     description="Open a DNS server that knows no records but records every request. Used for DNS exfiltration.",
