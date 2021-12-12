@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.0.1",
     author="karimpwnz",
     author_email="karim@karimrahal.com",
-    description="Open a DNS server that knows no records but records every request.",
+    description="Open a DNS server that knows no records but records every request. Used for DNS exfiltration.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/karimpwnz/dns-exfil",

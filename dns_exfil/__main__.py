@@ -119,7 +119,7 @@ class ThreadedUDPServer(socketserver.ThreadingMixIn, socketserver.UDPServer):
 def main():
     # Parse args
     argparser = argparse.ArgumentParser(
-        description="Open a DNS server that knows no records but records every request."
+        description="Open a DNS server that knows no records but records every request. Used for DNS exfiltration."
     )
     argparser.add_argument(
         "-a",
