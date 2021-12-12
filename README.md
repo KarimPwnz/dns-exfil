@@ -2,6 +2,11 @@
 
 Run a DNS server for the purpose of logging DNS questions. Can be used for DNS exfiltration or for good-old DNS pingback detection.
 
+![](misc/dns-exfil-display.png)
+
+
+## Usage
+
 ```
 $ dns-exfil --help
 usage: dns-exfil [-h] [-a HOST] [-p PORT] [-he] [-s SUFFIX]
