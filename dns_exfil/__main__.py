@@ -110,7 +110,7 @@ class DNSLogger:
         """Log a DNS request
 
         Args:
-            sender (str): the sender's IP address
+            sender (Tuple[str, int]): the sender's IP address
             request_data (DNSRecord): the raw, un-parsed request data (from socketserver)
         """
         question = record.get_q()
