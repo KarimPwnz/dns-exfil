@@ -20,10 +20,10 @@ class DNSLoggerHelper:
             "evil.com" -> ".evil.com."
 
         Args:
-            suffix (str): [description]
+            suffix (str): the original suffix string
 
         Returns:
-            str: [description]
+            str: the parsed suffix string
         """
         if not suffix:
             return suffix
