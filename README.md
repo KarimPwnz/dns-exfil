@@ -42,7 +42,7 @@ $ python3 setup.py install
 
 ## DNS exfiltration set-up
 
-Same setup as for DNS pingback. To exfiltrate data through DNS, you'll probably want dns-exfil to accept hex-encoded data. You can enable that feature by passing the `--hex-encoded` (`-he`) flag; for more accurate parsing, specify the FQDN of your DNS exfiltration domain through the `--suffix` (`-s`) flag. Example: `dns-exfil -he -s '.dnspwn.karimrahal.com.'`. In case the DNS question does not contain hex encoded values, dns-exfil will still parse it correctly.
+Same setup as for DNS pingback. To exfiltrate data through DNS, you'll probably want dns-exfil to decode hex-encoded data. You can enable that feature by passing the `--hex-encoded` (`-he`) flag; for more accurate parsing, specify the FQDN of your DNS exfiltration domain through the `--suffix` (`-s`) flag. Example: `dns-exfil -he -s '.dnspwn.karimrahal.com.'`. In case the DNS question does not contain hex encoded values, dns-exfil will still parse it correctly.
 
 ## Output
 
