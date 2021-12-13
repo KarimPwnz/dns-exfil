@@ -27,6 +27,7 @@ optional arguments:
 
 ```sh
 $ git clone https://github.com/KarimPwnz/dns-exfil.git
+# cd dns-exfil
 $ python3 setup.py install
 ```
 
