@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import functools
 import json
 import socketserver
 import sys
@@ -7,6 +8,9 @@ from typing import Tuple
 
 from dnslib import DNSRecord
 from dnslib.server import BaseResolver
+
+# Make print always flush
+print = functools.partial(print, flush=True)
 
 
 class DNSLoggerHelper:
