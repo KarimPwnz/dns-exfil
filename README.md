@@ -62,3 +62,9 @@ The output is in JSONL format:
 }
 ```
 
+## Showing only parsed qname
+
+```
+$ dns-exfil | jq -r '.parsed_qname'
+```
+
