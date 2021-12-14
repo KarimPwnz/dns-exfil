@@ -3,6 +3,7 @@ import argparse
 import json
 import socketserver
 import sys
+from datetime import datetime
 from typing import Tuple
 
 from dnslib import DNSRecord
@@ -117,6 +118,7 @@ class DNSLogger:
         qname_str = str(question.get_qname())
         parsed_qname_str = self.parse_question(qname_str)
         result = {
+            "timestamp": str(datetime.now()),
             "sender": DNSLoggerHelper.parse_sender(sender),
             "raw_question": str(question),
             "parsed_qname": parsed_qname_str,
