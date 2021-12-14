@@ -2,6 +2,8 @@
 
 Run a DNS server for the purpose of logging DNS questions. Can be used for DNS exfiltration or for good-old DNS pingback detection.
 
+<!-- https://carbon.now.sh/?bg=rgba%28248%2C231%2C28%2C1%29&t=seti&wt=none&l=application%2Fx-sh&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Fira+Code&fs=14px&lh=152%25&si=false&es=2x&wm=false&code=%25E2%259D%25AF%2520dns-exfil%2520-he%2520-s%2520%27.dnspwn.karimrahal.com%27%250A%257B%250A%2520%2520%2520%2520%2522timestamp%2522%253A%2520%25222021-12-14%252011%253A05%253A25.913910%2522%252C%250A%2520%2520%2520%2520%2522sender%2522%253A%2520%2522127.0.0.1%253A58314%2522%252C%250A%2520%2520%2520%2520%2522raw_question%2522%253A%2520%2522%253B73656372657431333337.dnspwn.karimrahal.com.%2520IN%2520%2520%2520%2520%2520%2520A%2522%252C%250A%2520%2520%2520%2520%2522parsed_qname%2522%253A%2520%2522secret1337.dnspwn.karimrahal.com.%2522%250A%257D -->
+
 ![dns-exfil example run](misc/dns-exfil-display.png)
 
 
