@@ -15,7 +15,7 @@ class DNSLoggerHelper:
 
     @staticmethod
     def parse_suffix(suffix: str) -> str:
-        """Parse a suffix string. If suffix does not start and end with a ".", make it do so.
+        """Parse a suffix string. If suffix does not start and end with a ".", make it do so. Furthermore, lowercase the suffix
 
         Example:
             "evil.com" -> ".evil.com."
@@ -26,6 +26,7 @@ class DNSLoggerHelper:
         Returns:
             str: the parsed suffix string
         """
+        suffix = suffix.lower()
         if not suffix:
             return suffix
         return "." + suffix.strip(".") + "."
@@ -57,9 +58,21 @@ class DNSLoggerHelper:
         Returns:
             str: the data string without the suffix
         """
-        if suffix and data.endswith(suffix):
+        if DNSLoggerHelper.has_suffix(data, suffix):
             data = data[: -len(suffix)]
         return data
+
+    @staticmethod
+    def has_suffix(data: str, suffix: str) -> bool:
+        """Check whether string has a suffix. The check is case-insensitive
+
+        Args:
+            data (str): the string to check the suffix on
+
+        Returns:
+            bool: whether the suffix is in the data string or not
+        """
+        return data.lower().endswith(suffix)
 
     @staticmethod
     def parse_sender(sender: Tuple[str, int]) -> str:
@@ -103,7 +116,7 @@ class DNSLogger:
         )
         # Re-join subdomains and suffix (if question started with it originally)
         result = ".".join(decoded_subdomains)
-        if question.endswith(self.suffix):
+        if DNSLoggerHelper.has_suffix(question, self.suffix):
             result += self.suffix
         return result
 
