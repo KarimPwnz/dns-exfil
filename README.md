@@ -51,14 +51,16 @@ The output is in JSONL format:
 
 ```json
 {
-    "sender": "1.1.1.1:59051",
-    "raw_question": ";7365637265742031333337.dnspwn.karimrahal.com. IN      A",
-    "parsed_qname": "secret 1337.dnspwn.karimrahal.com."
+    "timestamp": "2021-12-14 11:10:51.345230",
+    "sender": "127.0.0.1:59482",
+    "raw_question": ";73656372657431333337.dnspwn.karimrahal.com. IN      A",
+    "parsed_qname": "secret1337.dnspwn.karimrahal.com."
 }
 {
-    "sender": "1.1.1.1:59051",
-    "raw_question": ";7365637265742031333337.dnspwn.karimrahal.com. IN      A",
-    "parsed_qname": "secret 1337.dnspwn.karimrahal.com."
+    "timestamp": "2021-12-14 11:11:04.232967",
+    "sender": "127.0.0.1:49211",
+    "raw_question": ";hello.world.dnspwn.karimrahal.com. IN      A",
+    "parsed_qname": "hello.world.dnspwn.karimrahal.com."
 }
 ```
 
