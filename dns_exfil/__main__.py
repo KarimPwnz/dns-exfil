@@ -26,10 +26,9 @@ class DNSLoggerHelper:
         Returns:
             str: the parsed suffix string
         """
-        suffix = suffix.lower()
         if not suffix:
             return suffix
-        return "." + suffix.strip(".") + "."
+        return "." + suffix.lower().strip(".") + "."
 
     @staticmethod
     def gracefully_decode_hex(data: str) -> str:
