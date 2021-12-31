@@ -49,7 +49,7 @@ Same setup as for DNS pingback. To exfiltrate data through DNS, you'll probably 
 
 ## Output
 
-The output is in JSONL format:
+Each output is in JSON format:
 
 ```json
 {
