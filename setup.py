@@ -24,5 +24,5 @@ setuptools.setup(
     packages=["dns_exfil"],
     entry_points={"console_scripts": ["dns-exfil = dns_exfil.__main__:main"]},
     python_requires=">=3.6",
-    install_requires=["dnslib >= 0.9.1"],
+    install_requires=["dnslib >= 0.9.17"],
 )
