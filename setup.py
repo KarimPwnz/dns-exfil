@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="dns-exfil",
-    version="1.0.0",
+    version="1.0.1",
     license="MIT",
     author="karimpwnz",
     author_email="karim@karimrahal.com",
